@@ -13,14 +13,14 @@ ApexGuard combines safety-critical automotive engineering (track curvature dynam
 
 ---
 
-## 🌟 Key Capabilities
+## Key Capabilities
 
-### 1. 🧠 Google Gemini AI Pit Wall Race Strategist (`google-genai`)
+### 1.Google Gemini AI Pit Wall Race Strategist (`google-genai`)
 - **Real-Time Telemetry Debriefs**: Evaluates instantaneous telemetry packets (temperatures, pressures, wear rates, lap progress, fuel burn) and delivers Scuderia Ferrari race engineer directives.
 - **Custom Driver Queries**: Ask tactical questions in natural language (e.g., *"Can we extend this stint 5 more laps?"*, *"Analyze oil pressure drop and recommend engine mode"*).
 - **Graceful Deterministic Fallback**: If the API key is not configured or network drops occur, the system automatically falls back to deterministic rule evaluations without interrupting the 10 Hz telemetry stream.
 
-### 2. ⚙️ Deterministic Physics & Telemetry Engine (`app.py`)
+### 2.Deterministic Physics & Telemetry Engine (`app.py`)
 - **Autodromo Nazionale Monza Geometry**:
   - Continuous 2D vector spline coordinates with real-time heading angles ($\theta = \text{atan2}(\Delta y, \Delta x)$).
   - Track-position-dependent speed profiling: Straights reaching **345+ km/h** with DRS, braking chicanes dropping to **~110 km/h**, and dynamic 8-gear shift mapping.
@@ -29,18 +29,18 @@ ApexGuard combines safety-critical automotive engineering (track curvature dynam
   - **Fuel Mass Depletion**: Simulates fuel burn (~2.4 kg/lap) lightening car mass over stint distance, dynamically improving corner acceleration.
   - **DRS Aero Drag Reduction**: Automatically opens on Rettifilo and Serraglio straights (+12.5 km/h top speed boost).
 
-### 3. 🧮 Rate-of-Change ($\frac{d}{dt}$) & Early Failure Warning Engine
+### 3. Rate-of-Change ($\frac{d}{dt}$) & Early Failure Warning Engine
 - **Derivative Tracking**: Continuously computes second-order numerical rates of change ($\frac{dT}{dt}$ in $^\circ\text{C/s}$ and $\frac{dP}{dt}$ in $\text{bar/s}$).
 - **Proactive Early Warning**: Detects anomalous trends (e.g., thermal spike $\frac{dT}{dt} > 1.8^\circ\text{C/s}$ accompanied by oil pressure drop $\frac{dP}{dt} < -0.25\text{ bar/s}$) **before** absolute thresholds are breached.
 - **Critical Failure Alert**: Escalates to immediate shutdown mandate if absolute safety envelopes are exceeded ($T > 115^\circ\text{C}$ or $P < 1.0\text{ bar}$).
 - **Pit Strategy Advisory**: Real-time evaluation of cumulative tyre wear triggering automated pit window calls (e.g., `BOX BOX: Tyre Wear Exceeds 70% Limit`).
 
-### 4. 📊 Interactive Visualizations (Plotly & Vector Splines)
+### 4.Interactive Visualizations (Plotly & Vector Splines)
 - **Monza 2D Vector Map**: Rotated top-down vector sprite of Charles Leclerc's #16 Ferrari car navigating the track with dynamic heading alignment.
 - **G-Force Friction Traction Circle (G-G Diagram)**: Real-time Plotly scatter plot rendering lateral cornering loads ($G_{\text{lat}}$) vs longitudinal braking/acceleration loads ($G_{\text{lon}}$) within concentric friction limits ($1.5g$, $3.0g$, $4.5g$).
 - **4-Wheel Thermal Matrix & Powertrain Dashboard**: Live FL, FR, RL, RR tyre temps and wear percentages alongside oil pressure, engine temp, brake temp, and ERS battery state of charge.
 
-### 5. 🛠️ Interactive Fault Injections & Blackbox Export
+### 5.  Interactive Fault Injections & Blackbox Export
 - Real-time interactive triggers:
   - `PUSH MODE (ERS)` / `SAVE FUEL` / `OVERTAKE`
   - `⚠️ INJECT OIL LEAK` (simulates pressure line breach)
@@ -50,7 +50,7 @@ ApexGuard combines safety-critical automotive engineering (track curvature dynam
 
 ---
 
-## 🔑 Setup & Configuration (Google Gemini API)
+## Setup & Configuration (Google Gemini API)
 
 ApexGuard uses the official `google-genai` Python SDK to communicate with Google Gemini models.
 
@@ -89,7 +89,7 @@ GEMINI_API_KEY=your_actual_gemini_api_key_here
 
 ---
 
-## 📐 System Architecture & Data Flow
+## System Architecture & Data Flow
 
 ```
    ┌────────────────────────────────────────────────────────┐
@@ -125,7 +125,7 @@ GEMINI_API_KEY=your_actual_gemini_api_key_here
 
 ---
 
-## 📂 Repository File Structure
+## Repository File Structure
 
 ```
 .
@@ -147,7 +147,7 @@ GEMINI_API_KEY=your_actual_gemini_api_key_here
 
 ---
 
-## 🚀 Quick Start & Deployment Guide
+## Quick Start & Deployment Guide
 
 ### Option 1: Deploy to Hugging Face Spaces (Gradio, ZeroGPU & Gemini)
 
@@ -193,7 +193,7 @@ python main.py
 
 ---
 
-## 🎮 Failure Injections & Operating States
+## Failure Injections & Operating States
 
 | Injected Event | Physical Telemetry Response | System State Escalation | Gemini AI Action |
 |---|---|---|---|
